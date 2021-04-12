@@ -1,0 +1,121 @@
+$center:center;
+$maincolor:#4e26fd;
+
+@mixin flex($value) {
+    display: flex;
+    justify-content: $value;
+    align-items:center;
+}
+@mixin box($width, $height: $width) {
+    width: $width;
+    height: $height;
+}
+@mixin linkMenuA($value:black,$font-size:18px) {
+    text-decoration: none;
+    display: block;
+    color: $value;
+    font-size: $font-size; 
+}
+@mixin hoverMenuA() {
+    border:2px solid $maincolor;
+}
+@mixin buttonMore() {
+    background-color: transparent;
+    border:3px solid $maincolor;
+    color: $maincolor;
+    outline: transparent;
+    font-weight: bold;
+    border-radius: 4px;
+}
+@mixin descriptionText($value:16px) {
+    font-family: 'Open Sans', sans-serif;
+    padding: 0 5px 10px 10px;
+    font-size: $value;
+}
+@mixin cardTitle($value:17px) {
+    font-size: $value;
+    padding: 15px 10px;
+    text-align: center;
+}
+@mixin footerContInfo() {
+    @include box (max-content,20px);
+    line-height: 20px;
+    padding-left: 25px;
+    margin-bottom: 5px;
+}
+@mixin cardBorder() {
+    border-radius: 5px;
+    border-bottom: 4px solid #e5e6e6;
+}
+
+@mixin background-transition($initial, $hover, $inversed: false) {
+    background: linear-gradient(
+      90deg,
+      $hover 0%,
+      $hover 50%,
+      $initial 50%,
+      $initial 100%
+    );
+    background-repeat: no-repeat;
+    background-size: 200% 100%;
+  
+    background-position: right bottom;
+    @if $inversed {
+      background-position: left bottom;
+    }
+    transition: background-position 0.7s ease-out;
+  
+    &:hover {
+      background-position: left bottom;
+      @if $inversed {
+        background-position: right bottom;
+      }
+    }
+  }
+@mixin background-transition-second($initial, $hover, $inversed: false) {
+    background: linear-gradient(
+      90deg,
+      $hover 20%,
+      $hover 40%,
+      $initial 100%,
+      $initial 100%
+    );
+    background-repeat: no-repeat;
+    background-size: 200% 100%;
+  
+    background-position: right bottom;
+    @if $inversed {
+      background-position: left bottom;
+    }
+    transition: background-position 0.6s ease-out;
+  
+    &:hover {
+      background-position: left bottom;
+      @if $inversed {
+        background-position: right bottom;
+      }
+    }
+  }
+@mixin background-transition-third($initial, $hover, $inversed: false) {
+    background: linear-gradient(
+      90deg,
+      $hover 0%,
+      $hover 50%,
+      $initial 100%
+    );
+    background-repeat: no-repeat;
+    background-size: 200% 100%;
+  
+    background-position: right bottom;
+    @if $inversed {
+      background-position: left bottom;
+    }
+    transition: background-position 0.6s ease-out;
+  
+    &:hover {
+      background-position: left bottom;
+      @if $inversed {
+        background-position: right bottom;
+      }
+    }
+  }

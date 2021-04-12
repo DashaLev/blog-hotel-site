@@ -1,0 +1,617 @@
+@import './grid';
+@import "./variables";
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Yusei Magic', sans-serif;
+    background-color: #f3f3f3;
+}
+
+.header {
+    padding: 15px 10px;
+    background-color: white;
+    border-bottom: 3px solid #4e26fd;
+}
+.container {
+    width: 100%;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+.row {
+    display: flex;
+    margin: 0 -15px; 
+}
+[class*="col-"] {
+    padding: 0 15px;
+}
+.flex-wrap {
+    flex-wrap:wrap;
+}
+.block-center {
+    align-items: center;
+    justify-content: space-between;
+}
+.menu {
+    @include flex(flex-end);
+    li {
+        border: 2px solid transparent;
+        padding: 2px 10px;
+        margin: 5px;
+        position: relative;
+        z-index: 5;
+        a {
+           @include linkMenuA(black);
+           @include box(max-content, 30px);
+           line-height: 30px; 
+        }
+        &:hover a {
+            color: white;
+        }
+        &::before, &::after{
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+            background:$maincolor;
+            border-radius: 4px;
+			transform-origin: right;
+			transition: transform 400ms ease;
+			z-index: -1;
+			transform: scaleX(0);
+		}
+		&:hover::before, &:hover::after{
+			transform-origin: left;
+			transform: scaleX(1);
+		}
+    }
+}
+.slider  {
+    img {
+        @include box(100%);   
+    }
+}
+.main-search-form {
+    text-align: $center;
+    padding: 5px;
+    background-color:#7f8c8c;
+    border-bottom: 10px solid $maincolor;
+    margin: 20px 0;
+    border-bottom-right-radius:20px;
+    input {
+        margin: 5px;
+        @include box(265px, 35px);
+        padding-left: 10px;
+        font-weight: bold;
+        outline-color:black;  
+    }
+    input::placeholder {
+        text-transform: uppercase;
+        color: black;
+        font-weight: bold;
+    }
+    button {
+        margin: 10px 0;
+        @include box(265px, 35px);
+        color: white;
+        background-color: $maincolor;
+        outline-color: black;
+        border: 3px solid $maincolor;
+        cursor: pointer;
+    }
+    button:hover {
+        color: $maincolor;
+        background-color: white;
+        border: 4px solid $maincolor;
+        font-weight: bold;
+    }
+}
+.section-title {
+    @include cardTitle(25px);
+}
+
+.section-title:after {
+    content: "";
+    display: block;
+    width: 75px;
+    border-bottom: 3px solid $maincolor;
+    position:relative;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.winning-hotels-card {
+    padding: 10px;
+    margin-bottom: 15px;
+    @include cardBorder();
+
+    a {
+        @include linkMenuA();
+    }
+
+    .winning-hotels-card-photo {
+        display: block;
+        img {
+            @include box(100%);
+        }
+    }
+
+    &:hover {
+        
+        .winning-hotels-card-title {
+            text-decoration-line: underline;
+        }
+        .winning-hotels-card-description {
+            color:white;
+        }
+    }
+    &:nth-of-type(1) {
+        @include background-transition-second(rgb(255,255,255),$maincolor);
+    }
+}
+[class*="-card-title"] {
+    @include  cardTitle();
+    text-decoration-line: overline;
+}
+[class*="-card-description"] {
+    @include descriptionText();;
+}
+.text-center {
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+button {
+    @include buttonMore();
+    @include box(160px, 35px);
+    cursor: pointer;
+    &:hover {
+        color:white;
+        background-color: $maincolor;
+        border:4px double white;
+    }
+}
+
+.activities {
+    display: flex;
+}
+.activities-card {
+
+    h2 {
+        font-size: 25px;
+        padding: 10px;
+        font-weight: unset;
+    }
+    
+    a {
+        display: block;
+        width: inherit;
+        position: relative;
+    }
+    .activities-card-info {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.45);
+        width: 100%;
+    }
+}
+
+.delux-room-card {
+    @include cardBorder();
+    margin-bottom: 15px;
+    a {
+        @include linkMenuA();
+        img {
+            width: 100%;
+        }
+    }
+    &:hover {
+        .delux-rooms-card-title {
+            text-decoration:underline;
+        }
+        .delux-rooms-card-description {
+            color:white;
+        }
+    }
+    &:nth-of-type(1) {
+        @include background-transition(white, $maincolor);
+    }
+    &:nth-of-type(2) {
+        @include background-transition($maincolor,white, true);
+    }
+}
+.news-card {
+    @include cardBorder();
+    margin-bottom: 15px;
+    a {
+        @include linkMenuA();
+        img {
+            width: 100%;
+            max-height: 450px;
+        }
+    }
+    &:hover {
+        .news-card-title {
+            text-decoration:underline;
+        }
+        .news-card-description {
+            color: white;
+        }
+    }
+    &:nth-of-type(1) {
+        @include background-transition-third(rgba(0,0,0,0.1),#3F51B5);
+    }
+}
+.footer {
+    background-color: black;
+    padding-top: 15px;
+    .logo {
+        padding: 20px 0;
+    }
+    .footer-contacts {
+        color: white;
+        @include descriptionText(12px);
+        display: flex;
+        flex-direction: column;
+    }
+    .phone-number {
+        @include footerContInfo();
+        background: url(images/phone_vertical_icon.png) no-repeat 4% 0;
+    }
+    .email-adress {
+        @include footerContInfo();
+        background: url(images/mail_icon.png) no-repeat 2% 56%;
+    }
+    .adress {
+        @include footerContInfo();
+        background: url(images/location_icon.png) no-repeat;
+    }
+    
+} 
+.social-networks {
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+.social-networks-list {
+    @include flex(center);
+    padding-bottom: 10px;
+    li {
+        border: 1px solid white;
+        margin-left: 10px; 
+        &:hover {
+            border-color: $maincolor;
+        } 
+    }
+    a {
+        display: block;
+    }
+    .facebook {
+        @include box(26px);
+        background: url(images/facebook_white_icon.png) no-repeat center;
+    }
+    .twitter {
+        @include box(26px);
+        background: url(images/twiter_white_icon.png) no-repeat center;
+    }
+    .instagram {
+        @include box(26px);
+        background: url(images/instagram_white_icon.png) no-repeat center;
+    }
+    .youtube {
+        @include box(26px);
+        background: url(images/youtube_white_icon.png) no-repeat center;
+    }
+    .facebook:hover {
+        background: url(images/facebook_blue_icon.png) no-repeat center;
+    }
+    .twitter:hover {
+        background: url(images/twiter_blue_icon.png) no-repeat center;
+    }
+    .instagram:hover {
+        background: url(images/instagram_blue_icon.png) no-repeat center;
+    }
+    .youtube:hover {
+        background: url(images/youtube_blue_icon.png) no-repeat center;
+    }
+}
+.footer-information {
+    border-top: 1px solid white;
+    @include cardTitle(16px);
+    color: white;
+}
+
+
+@media (max-width: 767px) {
+    .header {
+        position: sticky;
+        top:0;
+        z-index: 30;
+    }
+    .logo {
+        @include box(100px, 40px);
+    }
+    .hide-XS {
+        display: none;
+    }
+    .menu {
+        overflow-x: overlay;
+        padding-top: 3px;
+    }
+    .footer-contacts {
+        align-items: center;
+        order: 3;
+    }
+    .width-xs {
+        padding: 0 15px;
+
+    }
+    .activities-card {
+        a {
+            img {
+                height: 500px;
+            }
+        }
+    }
+    .hiden-menu {
+        opacity: 0;
+        visibility: hidden;
+    }
+    .navigation {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        transition: all 550ms ease-in-out;
+        transform: translateY(100%);
+        background: white;  
+    }
+    .nav-mobile-menu {
+        width: 35px;
+        height: 35px;
+        position: relative;
+        background-color: $maincolor;
+        border-radius: 4px;
+      
+        span {
+          display: block;
+          position: absolute;
+          top: 16px;
+          left: 5px;
+          right: 4px;
+          height: 3px;
+          background-color: white;
+        }
+         
+        span::before, span::after {
+          position: absolute;
+          display: block;
+          left: 0;
+          width: 100%;
+          height: 3px;
+          background-color: white;
+          content: "";
+        }
+         
+        span::before {
+          top: -7px;
+        }
+         
+        span::after {
+          bottom: -7px;
+        }
+
+    }
+    .active-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0);
+        flex-direction: column;
+        z-index: 100;
+        justify-content: flex-start;
+         
+        span::before, span::after {
+          transition-duration: 0.3s, 0.3s;
+          transition-delay: 0.3s, 0s;
+        }
+         
+        span::before {
+          transition-property: top, transform;
+        }
+         
+        span::after {
+          transition-property: bottom, transform;
+        }
+    }
+          
+    .nav-mobile-menu.active-menu {
+        background-color: rgb(200, 18, 18);
+    }
+    .nav-mobile-menu.active-menu span {
+        background: none;
+    }
+         
+    .nav-mobile-menu.active-menu span::before {
+        top: 0;
+        transform: rotate(45deg);
+    }
+         
+    .nav-mobile-menu.active-menu span::after {
+        bottom: 0;
+        transform: rotate(-45deg);
+    }
+         
+    .nav-mobile-menu.active-menu span::before,
+    .nav-mobile-menu.active-menu span::after {
+        transition-delay: 0s, 0.3s;
+    }
+
+  
+    .align-center {
+        align-items: center;
+        justify-content: space-between;
+    }
+    .menu {
+        li:first-child {
+            margin-top: 60px;
+        }
+        li {
+            margin-bottom: 15px;
+            a {
+                height: 30px;
+                font-size: 20px;
+                line-height: 30px;
+            }
+        }
+    }
+
+}
+
+
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+    .alagin-center {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+    
+    .activities {
+        width: 100%;
+        .activities-card {
+            a {
+                img {
+                    height: 400px;
+                    width: 100%;
+                }
+            }
+            
+        }
+    }
+    .width-sm-md {
+        width: 20%;
+    }
+    .width-sm-md:hover {
+        width: 25%;
+
+        .activities-card { 
+
+            .activities-card-info {
+                color: black;
+                background-color: rgba(255, 255, 255, 0.45);
+                
+            }
+            
+        } 
+      
+    }
+    .menu-footer {
+        display: flex;
+        flex-wrap: wrap;
+        padding-bottom: 10px;
+        
+        li {
+            border: 2px solid transparent;
+            padding: 0 4px;
+            margin-right: 10px;
+
+            a {
+              @include linkMenuA(white,16px);
+              @include box(max-content, 30px);
+              line-height: 30px; 
+            }
+            &:hover {
+                border-color: $maincolor;
+            }
+        }
+    }
+}
+
+
+@media (min-width: 768px) and (max-width:991px) {
+
+    .flex-sm {
+        display: flex;
+    }
+    .delux-room-card {
+        margin: 15px;
+    }
+    .news-card {
+        a {
+            @include linkMenuA();
+
+        }
+    }
+
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+
+    .main-search-form {
+        input {
+            width: 150px;
+        }
+        button {
+            width: 160px;
+        }
+    }
+    .section-title {
+        @include cardTitle(30px);
+        padding: 40px 0;
+    }
+ 
+    .delux-room-card {
+        a {
+            .md-img-size {
+                max-width: max-content;
+                height: min-content;
+            } 
+        } 
+    } 
+    .social-networks {
+        padding:0 0 15px 10px;
+    }
+    .activities {
+        .activities-card {
+            a {
+                img {
+                    height: 550px;
+                }
+            }
+        }
+                        
+    }
+    .pb-before-footer {
+        margin: 30px 0 50px 0;
+    } 
+
+}
+@media (min-width: 992px) and (max-width:1211px) {
+    .delux-room-card {
+        a {
+            .md-img-size {
+                height: 404px;
+            }
+        }
+    } 
+}
+ 
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}

@@ -1,0 +1,58 @@
+$center:center;
+$maincolor:#4e26fd;
+
+@mixin flex($value) {
+    display: flex;
+    justify-content: $value;
+    align-items:center;
+}
+@mixin box($width, $height: $width) {
+    width: $width;
+    height: $height;
+}
+@mixin linkMenuA($color:black, $font-size:18px) {
+    text-decoration: none;
+    display: block;
+    color: $color;
+    font-size: $font-size; 
+}
+@mixin hoverMenuA() {
+    border:2px solid $maincolor;
+}
+
+@mixin descriptionText($value:16px) {
+    font-family: 'Open Sans', sans-serif;
+    padding: 0 5px 10px 10px;
+    font-size: $value;
+}
+@mixin cardTitle($value:18px) {
+    font-size: $value;
+    padding: 15px 10px;
+    text-align: center;
+}
+
+// @mixin title($value:40px) {
+//     font-size: $value;
+//     padding-top:30px;
+//     padding-bottom:30px;
+//     text-align: center;
+// }
+@mixin footerContInfo() {
+    @include box (max-content,20px);
+    line-height: 20px;
+    padding-left: 25px;
+    margin-bottom: 5px;
+}
+
+@mixin postKinds() {
+    @include box(70px);
+    margin-top: 20px;
+}
+@mixin cardBgBr() {
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    border-bottom: 4px solid #e5e6e6;
+}
+
+
+
